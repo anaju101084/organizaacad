@@ -13,6 +13,13 @@
                     <form action="actionUsuario.php" class="was-validated" method="POST" enctype="multipart/form-data">
 
                         <div class="form-floating mb-3 mt-3">
+                            <input type="text" class="form-control" id="matriculaUsuario" placeholder="Informe o seu nome" name="matriculaUsuario" required>
+                            <label for="matriculaUsuario" class="form-label">Número de Matrícula:</label>
+                            <div class="valid-feedback"></div>
+                            <div class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="form-floating mb-3 mt-3">
                             <input type="file" class="form-control" id="fotoUsuario" name="fotoUsuario" required>
                             <label for="fotoUsuario" class="form-label">Foto:</label>
                             <div class="valid-feedback"></div>

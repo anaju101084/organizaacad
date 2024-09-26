@@ -38,7 +38,10 @@
                         <a class="nav-link active" href="index.php" title="Ir para a Página Inicial">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="formProduto.php" title="Cadastrar Produto">Cadastrar Atividades</a>
+                        <a class="nav-link" href="formAtividadeEstudante.php" title="Cadastrar Atividade">Cadastrar Atividade Estudante</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="formAtividadeProfessor.php" title="Cadastrar Atividade">Cadastrar Atividade Professor</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="formLogin.php" title="Acessar o Sistema">Login</a>
