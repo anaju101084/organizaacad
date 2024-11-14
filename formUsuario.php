@@ -13,7 +13,7 @@
                     <form action="actionUsuario.php" class="was-validated" method="POST" enctype="multipart/form-data">
 
                         <div class="form-floating mb-3 mt-3">
-                            <input type="text" class="form-control" id="matriculaUsuario" placeholder="Informe o seu nome" name="matriculaUsuario" required>
+                            <input type="text" class="form-control" id="matriculaUsuario" placeholder="Informe o seu nome" name="matriculaUsuario" minlength="11" maxlength="11" required>
                             <label for="matriculaUsuario" class="form-label">Número de Matrícula:</label>
                             <div class="valid-feedback"></div>
                             <div class="invalid-feedback"></div>

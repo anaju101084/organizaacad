@@ -2,13 +2,38 @@
 
 <?php
     //Bloco para declaração de variáveis PHP
-    $fotoUsuario = $nomeUsuario = $cursoUsuario = $emailUsuario = $senhaUsuario = $confirmarSenhaUsuario = "";
+    $matriculaUsuario = $fotoUsuario = $nomeUsuario = $cursoUsuario = $emailUsuario = $senhaUsuario = $confirmarSenhaUsuario = "";
     $erroPreenchimento = false;
 
     //Verifica o método de requisição do formulário
     if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-        //Validação do campo nomeUsuario utilizando a função empty
+        //Validação do campo matriculaUsuario utilizando a função empty
+        if(empty($_POST["matriculaUsuario"])){
+            echo "<div class='alert alert-warning text-center'>O campo <strong>Matricula</strong> é obrigatório!</div>";
+            $erroPreenchimento = true;
+        }
+        //Se o campo não estiver vazio, ele filtra o dado e armazena na variável PHP
+        else {
+            $matriculaUsuario = filtrar_entrada($_POST["matriculaUsuario"]);
+
+            include("conexaoBD.php");
+
+            $verificarMatricula = "SELECT matriculaUsuario
+                                    FROM Usuarios
+                                    WHERE matriculaUsuario LIKE '$matriculaUsuario'
+                                ";
+
+            $res = mysqli_query($conn, $verificarMatricula) or die("<div class='alert alert-danger text-center'>Erro ao tentar cadastrar matrícula.</div>");
+
+            $totalMatriculasCadastradas = mysqli_num_rows($res);
+
+            if($totalMatriculasCadastradas > 0){
+                echo "<div class='alert alert-warning text-center'>Esta matrícula já possui cadastro em nosso sistema!</div>";
+                $erroPreenchimento = true;
+            }
+        }
+
         //Verifica se o campo do formulário está vazio e caso sim, exibe mensagem de alerta
         if(empty($_POST["nomeUsuario"])){
             echo "<div class='alert alert-warning text-center'>O campo <strong>NOME</strong> é obrigatório!</div>";
@@ -96,7 +121,7 @@
         if(!$erroPreenchimento && !$erroUpload){
 
             //Armazena a QUERY na variável $inserirUsuario
-            $inserirUsuario = "INSERT INTO Usuarios (fotoUsuario, nomeUsuario, cursoUsuario, emailUsuario, senhaUsuario) VALUES ('$fotoUsuario', '$nomeUsuario', '$cursoUsuario', '$emailUsuario', '$senhaUsuario')";
+            $inserirUsuario = "INSERT INTO usuarios (matriculaUsuario, fotoUsuario, nomeUsuario, cursoUsuario, emailUsuario, senhaUsuario) VALUES ('$matriculaUsuario', '$fotoUsuario', '$nomeUsuario', '$cursoUsuario', '$emailUsuario', '$senhaUsuario')";
 
             //Inclui o arquivo de conexao com o banco de dados
             include "conexaoBD.php";
